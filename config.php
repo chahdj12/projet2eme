@@ -1,14 +1,36 @@
-<?
-	//define the receiver of the email
-	define('TO_EMAIL','rbista.team@gmail.com');
-	
-	//define the subject of the email
-	define('SUBJECT','Contact from your website');	
-	
-	// Messages
-	define('MSG_INVALID_NAME','Please enter your name.');
-	define('MSG_INVALID_EMAIL','Please enter valid e-mail.');
-	define('MSG_INVALID_MESSAGE','Please enter your message.');
-	define('MSG_SEND_ERROR','Sorry, we can\'t send this message.');
+<?php
 
-?>
+class config
+{
+    private static $pdo = null;
+
+    public static function getConnexion()
+    {
+        if (!isset(self::$pdo)) {
+            try {
+                self::$pdo = new PDO(
+                    'mysql:host=localhost;dbname=projet2a21',
+                    'root',
+                    '',
+                    [
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                    ]
+                );
+                //echo "connected successfully";
+            } catch (Exception $e) {
+                die('Erreur: ' . $e->getMessage());
+            }
+        }
+        return self::$pdo;
+    }
+}
+
+
+
+
+
+
+
+
+config::getConnexion();
