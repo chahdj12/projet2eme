@@ -1,39 +1,39 @@
 <?php
 
 include '../Controller/typeoffreC.php';
-include '../model/typeoffre.php';
+include '../Model/typeoffre.php';
 $error = "";
 
 // create client
 $typeoffre = null;
 // create an instance of the controller
-$typeoffreC= new typeoffreC();
+$typeoffreC = new typeoffreC();
 
 
 if (
-    isset($_POST["nomType"]) &&
-    isset($_POST["Logo"]) &&
-    isset($_POST["nbrType"]) 
+    isset($_POST["nomtype"]) &&
+    isset($_POST["logo"]) &&
+    isset($_POST["nbroffres"]) 
 ) {
     if (
-        !empty($_POST['nomType']) &&
-        !empty($_POST["Logo"]) &&
-        !empty($_POST["nbrOffres"]) 
+        !empty($_POST['nomtype']) &&
+        !empty($_POST["logo"]) &&
+        !empty($_POST["nbroffres"]) 
     ) {
         foreach ($_POST as $key => $value) {
             echo "Key: $key, Value: $value<br>";
         }
         $joueur = new typeoffre(
             null,
-            $_POST['nomType'],
-            $_POST['Logo'],
-            $_POST['nbrOffres']
+            $_POST['nomtype'],
+            $_POST['logo'],
+            $_POST['nbroffres']
         );
         var_dump($typeoffre);
         
-        $joueurC->updatetypeoffre($typeoffre, $_POST['idType']);
+        $typeoffreC->updatetypeoffre($typeoffre, $_POST['idtype']);
 
-        header('Location:listTypeOffre.php');
+        header('Location:listtypeoffre.php');
     } else
         $error = "Missing information";
 }
@@ -50,7 +50,7 @@ if (
 </head>
 
 <body>
-    <button><a href="listTypeOffres.php">Back to list</a></button>
+    <button><a href="listtypeoffre.php">Back to list</a></button>
     <hr>
 
     <div id="error">
@@ -58,17 +58,17 @@ if (
     </div>
 
     <?php
-    if (isset($_POST['idType'])) {
-        $joueur = $typeoffreC->showoffres($_POST['idType']);
+    if (isset($_POST['idtype'])) {
+        $typeoffre = $typeoffreC->showtypeoffre($_POST['idtype']);
         
     ?>
 
         <form action="" method="POST">
             <table>
             <tr>
-                    <td><label for="nom">IdType :</label></td>
+                    <td><label for="id">Id type offre :</label></td>
                     <td>
-                        <input type="text" id="idType" name="idType" value="<?php echo $_POST['idType'] ?>" readonly />
+                        <input type="text" id="idtype" name="idtype" value="<?php echo $_POST['idtype'] ?>" readonly />
                         <span id="erreurNom" style="color: red"></span>
                     </td>
                 </tr>
@@ -80,21 +80,20 @@ if (
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="Logo">Logo offre :</label></td>
+                    <td><label for="logo">logo :</label></td>
                     <td>
-                        <input type="text" id="Logo" name="Logo" value="<?php echo $typeoffre['Logo'] ?>" />
-                        <span id="erreurLogo" style="color: red"></span>
+                        <input type="text" id="logo" name="logo" value="<?php echo $typeoffre['logo'] ?>" />
+                        <span id="erreurPrenom" style="color: red"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="nbrOffres">nombre des offres:</label></td>
+                    <td><label for="nbroffres">Nombre des offres:</label></td>
                     <td>
-                        <input type="text" id="nbrOffres" name="nbrOffres" value="<?php echo $typeoffre['nbrOffres'] ?>" />
+                        <input type="text" id="nbroffres" name="nbroffres" value="<?php echo $typeoffre['nbroffres'] ?>" />
                         <span id="erreurnbroffres" style="color: red"></span>
                     </td>
                 </tr>
-
-
+         
 
                 <td>
                     <input type="submit" value="Save">
