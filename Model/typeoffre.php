@@ -1,60 +1,69 @@
 <?php
-
-class typeoffre{
-    private string $idType=null;
-    private string $nomType=null;
-    private string $Logo=null;
-    private string $nbrOffres=null;
-
-
-    public function __construct($idType=null,$n,$l,$nb) //id=null car id auto incremente
-    {
-        $this->idType=$idType;
-        $this->nomType=$n;
-        $this->Logo=$l;
-        $this->nbrOffres=$nb;
-    
-
-    }
-    public function getidType()
-    {
-        return $this->idType;
-
-    }
-    public function getnomType()
-    {
-        return $this->nomType;
-
-    }
-    public function setnomType($n)
-    {
-         $this->nomType=$n;
-
-    }
-    public function setLogo($l)
-    {
-         $this->Logo=$l;
-
-    }
-    public function getLogo()
-    {
-        return $this->Logo;
-
-    }
-    public function setnbrOffres($nb)
-    {
-         $this->setnbrOffres=$nb;
-
-    }
-    public function getnbrOffres()
-    {
-        return $this->nbrOffres;
-
-    }
+class typeoffre
+{
+    private ?int $idtype= null;
+    private ?string $nomtype= null;
+    private ?string $logo= null;
+    private ?int $nbroffres = null;
  
 
+    public function __construct($idtype = null, $n, $l, $nb)
+    {
+        $this->idtype = $idtype;
+        $this->nomtype = $n;
+        $this->logo = $l;
+        $this->nbroffres = $nb;
+        
+    }
+
+
+    public function getidtype()
+    {
+        return $this->idtype;
+    }
+
+
+    public function getnomtype()
+    {
+        return $this->nomtype;
+    }
+
+
+    public function setnomtype($nomtype)
+    {
+        $this->nom = $nomtype;
+
+        return $this;
+    }
+
+
+    public function getlogo()
+    {
+        return $this->logo;
+    }
+
+
+    public function setlogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+
+    public function getnbroffres()
+    {
+        return $this->nbroffres;
+    }
+
+
+    public function setnbroffres($nbroffres)
+    {
+        $this->nbroffres = $nbroffres;
+
+        return $this;
+    }
 
 
 
 }
-?>
