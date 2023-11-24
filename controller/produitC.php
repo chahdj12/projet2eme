@@ -68,4 +68,25 @@ class produitC{
                 $e->getMessage();
             }
 }
+
+function modifierproduit($produit,$id){    
+    $name=$produit->getname();
+      
+    $descriptionP=$produit->getdescription_p();
+    $stock=$produit->getstock();
+    $prix=$produit->getprix();
+   
+    try {
+        $db = config::getConnexion();
+        $query = $db->prepare(
+        "UPDATE produit SET
+         name = '$name',  descriptionP= '$descriptionP',stock= '$stock',prix= '$prix'
+        WHERE id_produit = '$id'");
+        $query->execute();
+        echo"succ";
+    } catch (PDOException $e) {
+        $e->getMessage();
+
+    }
+}
     }
