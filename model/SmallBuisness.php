@@ -6,16 +6,20 @@ class SmallBuisness{
             private $categorie;
             private $lieu;
             private $description;
+            private $id_produit;
             private $logo;
            
 
     
-    function __construct($name,$categorie,$lieu,$description,$logo){
-        
+    function __construct($name,$categ,$lieu,$desc,$id_produit,$logo)
+   
+    {
+        //$this->id = $id;
         $this->name=$name;
-        $this->categorie=$categorie;
+        $this->categorie=$categ;
         $this->lieu=$lieu;
-        $this->description=$description;
+        $this->description=$desc;
+        $this->id_produit=$id_produit;
         $this->logo=$logo;
        
 
@@ -24,11 +28,14 @@ class SmallBuisness{
       
        
 
-        function getid(){
+        function getid()// récupérer la valeur 
+        
+        {
             return $this->id;
         }
 
-        function setid($id){
+        function setid($id)//définir (ou modifier) 
+        {
             $this->id =$id;
         }
         function getname(){
@@ -61,6 +68,13 @@ class SmallBuisness{
 
         function setdescription($description){
             $this->description =$description;
+        }
+          function getIdProduit(){
+            return $this->id_produit;
+        }
+
+        function setIdProduit($id_produit){
+            $this->id_produit =$id_produit;
         }
 
         function getlogo(){
