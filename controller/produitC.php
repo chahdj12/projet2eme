@@ -48,5 +48,24 @@ class produitC{
             $e->getMessage();
         }
     }
+    function ajouterproduit($produit){
 
+                            
+        $name=$produit->getname();
+      
+        $descriptionP=$produit->getdescription_p();
+        $stock=$produit->getstock();
+        $prix=$produit->getprix();
+      
+        try {
+            $sql = "INSERT INTO produit (name,descriptionP,stock,prix)
+            VALUES('$name','$descriptionP','$stock','$prix')";
+
+            $db = config::getConnexion();
+                $query = $db->prepare($sql);
+                $query->execute();
+            } catch(Exception $e){
+                $e->getMessage();
+            }
+}
     }
