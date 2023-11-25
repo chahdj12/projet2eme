@@ -92,7 +92,20 @@
 
 			}
 		}
-		
+        public function afficherSmallBByProduct($id){
+      
+            $data= array();
+            $db = config::getConnexion();
+                $sql="SELECT * FROM small_bs WHERE produit=:id";
+                $query = $db->prepare($sql);
+                $query->execute(['id'=>$id]);
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $row) {
+                  $data[] = $row;
+                }
+                return $data;
+     
+            }
     }
 
 
