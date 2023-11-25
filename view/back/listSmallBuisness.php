@@ -52,8 +52,8 @@ include "../../controller/produitC.php";
                                             <td><?php    echo $row['lieu'] ?></td>
                                             <td><?php    echo $row['descriptionS'] ?></td>
                                             <td><?php    echo $productC->getProcuctByiD($row['produit'])['name'] ?></td>
-                                            <td><?php    echo $row['logo'] ?></td>
-                                            
+                                            <td>                                            <img src="http://localhost/projetWeb2eme/view/back/uploads/<?php echo $row['logo']; ?>" alt="logo" width="100" height="100" > 
+</td>
                                             <td>
                                                 <?php echo'
                                               <button class="btn btn-primary">

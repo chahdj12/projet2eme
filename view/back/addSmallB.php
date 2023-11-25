@@ -13,25 +13,66 @@ include "../../controller/produitC.php";
 
         $produitC= new produitC();
         $listeProduit=$produitC->afficheProduit();
-        foreach ($listeProduit as $row)  {
-            var_dump($row['name']);
-        }
+       
         
     if(isset($_POST['submit']) )
 	{
-        $name=$_POST['nameS'];
-        $categorie=$_POST['categ'];
-        $lieu=$_POST['lieu'];
-        $descriptionS=$_POST['Desc'];
-        $id_produit=$_POST['product'];
-        $logo=$_POST['logo'];
-        $smallB=new SmallBuisness($name,$categorie,$lieu,$descriptionS,$id_produit,$logo);
-        $smallBController = new SmallBController();
-        $smallBController->ajouterSmallB($smallB);
+        var_dump($_FILES["logo"]);
+        if (isset($_FILES["logo"]) && $_FILES["logo"]["error"] == 0) {
+            $targetDir = "uploads/";
+            $targetFile = $targetDir . basename($_FILES["logo"]["name"]);
+            $uploadOk = true;
+            $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    
+            // Check if the file already exists
+            if (file_exists($targetFile)) {
+                echo "Sorry, the file already exists.";
+                $uploadOk = false;
+            }
+    
+            // Check file size (adjust as needed)
+            if ($_FILES["logo"]["size"] > 500000) {
+                echo "Sorry, your file is too large.";
+                $uploadOk = false;
+            }
+    
+            // Allow only certain file formats (you can customize this list)
+            $allowedFormats = array("jpg", "jpeg", "png", "gif");
+            if (!in_array($imageFileType, $allowedFormats)) {
+                echo "Sorry, only JPG, JPEG, PNG, and GIF files are allowed.";
+                $uploadOk = false;
+            }
+    
+            // Check if $uploadOk is set to false by an error
+            if (!$uploadOk) {
+                echo "Sorry, your file was not uploaded.";
+            } else {
+                
+                // Move the file to the specified directory
+                if (move_uploaded_file($_FILES["logo"]["tmp_name"], $targetFile)) {
+                    echo "The file " . htmlspecialchars(basename($_FILES["logo"]["name"])) . " has been uploaded.";
+                
+                     $name=$_POST['nameS'];
+                    $categorie=$_POST['categ'];
+                    $lieu=$_POST['lieu'];
+                    $descriptionS=$_POST['Desc'];
+                    $id_produit=$_POST['product'];
+                    $logo=$_FILES["logo"]["name"];
+                    $smallB=new SmallBuisness($name,$categorie,$lieu,$descriptionS,$id_produit,$logo);
+                    $smallBController = new SmallBController();
+                    $smallBController->ajouterSmallB($smallB);
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }
+        } else {
+            echo "Please select a file to upload.";
+        }
+       
        // var_dump($id_produit) ;
 
         ob_end_flush();
-        header("Location: listSmallBuisness.php");
+        // header("Location: listSmallBuisness.php");
         exit();        
     }
 		
@@ -54,7 +95,7 @@ include "../../controller/produitC.php";
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">New Small Buisness</h3></div>
                                     <div class="card-body">
-                                        <form method="POST"  class="env">
+                                        <form method="POST"  class="env" enctype="multipart/form-data">
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
@@ -99,7 +140,7 @@ include "../../controller/produitC.php";
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputLogo" type="text" name="logo"  placeholder="Enter Buisness  description" />
+                                                        <input class="form-control" id="inputLogo" type="file" name="logo"  placeholder="Enter Buisness  logo" accept="image/*"/>
                                                         <label for="inputLogo">Logo</label>
                                                     </div>
                                                 </div>
