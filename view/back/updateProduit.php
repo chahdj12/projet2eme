@@ -67,8 +67,8 @@ $id = $_GET['id'];
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="inputCategorie" type="text"  name="desc" placeholder="Enter Product  Description" value="<?php echo $descriptionP ?>"/>
-                                                        <label for="inputCategorie">Description</label>
+                                                        <input class="form-control" id="inputDescription" type="text"  name="desc" placeholder="Enter Product  Description" value="<?php echo $descriptionP ?>"/>
+                                                        <label for="inputDescription">Description</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -77,14 +77,14 @@ $id = $_GET['id'];
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputLogo" type="number" name="stock"  placeholder="Enter Product  stock" value="<?php echo $stock ?>"/>
-                                                        <label for="inputLogo">Stock</label>
+                                                        <input class="form-control" id="inputStock" type="number" name="stock"  placeholder="Enter Product  stock" value="<?php echo $stock ?>"/>
+                                                        <label for="inputStock">Stock</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputLogo" type="number" name="price"  placeholder="Enter Product  price" value="<?php echo $price ?>"/>
-                                                        <label for="inputLogo">Price</label>
+                                                        <input class="form-control" id="inputPrice" type="number" name="price"  placeholder="Enter Product  price" value="<?php echo $price ?>"/>
+                                                        <label for="inputPrice">Price</label>
                                                     </div>
                                                 </div>
                                                 
@@ -92,6 +92,8 @@ $id = $_GET['id'];
                                                 <div class="mt-4 mb-0">
                                                 <input type="hidden" name="idP" value="<?php echo $id?>">
                                                 <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" name="submit">Save</button></div>
+                                                <p id="error"></p>
+                                               
                                                 </div>
                                             </form> 
                                     </div>
@@ -119,6 +121,7 @@ $id = $_GET['id'];
                 </footer>
             </div>
         </div>
+        <script src="./js/controleSaisie.js"></script>
          <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
         <!-- <script src="js/scripts.js"></script>  -->
     </body>

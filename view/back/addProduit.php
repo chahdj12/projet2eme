@@ -60,8 +60,8 @@ include "../../controller/produitC.php";
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="inputCategorie" type="text"  name="desc" placeholder="Enter Product  Description" />
-                                                        <label for="inputCategorie">Description</label>
+                                                        <input class="form-control" id="inputDescription" type="text"  name="desc" placeholder="Enter Product  Description" />
+                                                        <label for="inputDescription">Description</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,21 +70,22 @@ include "../../controller/produitC.php";
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputLogo" type="number" name="stock"  placeholder="Enter Product  location" />
-                                                        <label for="inputLogo">Stock</label>
+                                                        <input class="form-control" id="inputStock" type="number" name="stock"  placeholder="Enter Product  location" />
+                                                        <label for="inputStock">Stock</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputLogo" type="text" name="price"  placeholder="Enter Product  description" />
-                                                        <label for="inputLogo">Price</label>
+                                                        <input class="form-control" id="inputPrice" type="text" name="price"  placeholder="Enter Product  description" />
+                                                        <label for="inputPrice">Price</label>
                                                     </div>
                                                 </div>
                                                 
                                             </div>
                                                 <div class="mt-4 mb-0">
                                                 <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" name="submit">Save</button></div>
-                                                </div>
+                                                <p id="error"></p>    
+                                            </div>
                                             </form> 
                                     </div>
                                     <div class="card-footer text-center py-3">
@@ -111,6 +112,7 @@ include "../../controller/produitC.php";
                 </footer>
             </div>
         </div>
+        <script src="./js/controleSaisie.js"></script>
          <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
         <!-- <script src="js/scripts.js"></script>  -->
     </body>
