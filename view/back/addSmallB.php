@@ -4,7 +4,7 @@ include "headerBack.php";
 
 include "../../controller/SmallBController.php";
 include "../../controller/produitC.php";
-    
+    $err="";
         $name="";
         $categorie="";
         $lieu="";
@@ -26,13 +26,13 @@ include "../../controller/produitC.php";
     
             // Check if the file already exists
             if (file_exists($targetFile)) {
-                echo "Sorry, the file already exists.";
+                $err= "Sorry, the file already exists.";
                 $uploadOk = false;
             }
     
             // Check file size (adjust as needed)
             if ($_FILES["logo"]["size"] > 500000) {
-                echo "Sorry, your file is too large.";
+                $err= "Sorry, your file is too large.";
                 $uploadOk = false;
             }
     
@@ -45,12 +45,12 @@ include "../../controller/produitC.php";
     
             // Check if $uploadOk is set to false by an error
             if (!$uploadOk) {
-                echo "Sorry, your file was not uploaded.";
+                $err= "Sorry, your file was not uploaded.";
             } else {
                 
                 // Move the file to the specified directory
                 if (move_uploaded_file($_FILES["logo"]["tmp_name"], $targetFile)) {
-                    echo "The file " . htmlspecialchars(basename($_FILES["logo"]["name"])) . " has been uploaded.";
+                    $err= "The file " . htmlspecialchars(basename($_FILES["logo"]["name"])) . " has been uploaded.";
                 
                      $name=$_POST['nameS'];
                     $categorie=$_POST['categ'];
@@ -62,11 +62,11 @@ include "../../controller/produitC.php";
                     $smallBController = new SmallBController();
                     $smallBController->ajouterSmallB($smallB);
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    $err= "Sorry, there was an error uploading your file.";
                 }
             }
         } else {
-            echo "Please select a file to upload.";
+            $err= "Please select a file to upload.";
         }
        
        // var_dump($id_produit) ;
@@ -134,7 +134,7 @@ include "../../controller/produitC.php";
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputLogo" type="text" name="lieu"  placeholder="Enter Buisness  location" />
+                                                        <input class="form-control" id="inputLocation" type="text" name="lieu"  placeholder="Enter Buisness  location" />
                                                         <label for="inputLogo">Location</label>
                                                     </div>
                                                 </div>
@@ -148,6 +148,8 @@ include "../../controller/produitC.php";
                                             </div>
                                                 <div class="mt-4 mb-0">
                                                 <div class="d-grid"><button type="submit" class="btn btn-primary btn-block" name="submit">Save</button></div>
+                                                <p id="error"></p>
+                                                <p><?php echo $err ?></p>
                                                 </div>
                                             </form> 
                                     </div>
@@ -175,6 +177,8 @@ include "../../controller/produitC.php";
                 </footer>
             </div>
         </div>
+        <script src="./js/controleSmallB.js"></script>
+
         <!-- <script src="./js/controleSaisie.js"></script> -->
          <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
         <!-- <script src="js/scripts.js"></script>  -->

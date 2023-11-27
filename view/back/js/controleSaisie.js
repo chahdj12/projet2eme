@@ -3,9 +3,10 @@ myForm.addEventListener("submit", (e) => {
     let stock = document.getElementById("inputStock").value;
     let price = document.getElementById("inputPrice").value;
   let name = document.getElementById("inputName");
-  let description = document.getElementById("inputDescription");
+  let description = document.getElementById("inputdescription");
  
   let testString = /^([a-zA-Z ])+$/;
+  let testString2 = /^([a-zA-Z])+$/;
   let err = document.getElementById("error");
   err.style.color = "red";
   
@@ -25,10 +26,12 @@ myForm.addEventListener("submit", (e) => {
     err.innerHTML = "Price must be numbers";
     e.preventDefault();
   }
-  if (description.length==0) {
+  if ((description.value).length == 0) 
+  {
     err.innerHTML = "Description required";
-    e.preventDefault();
-  }
+    console.log(err);
+   e.preventDefault();
+ }
 
 
 });

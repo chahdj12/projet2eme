@@ -30,7 +30,7 @@ $id = $_GET['id'];
         $price=$_POST['price'];
         $produit=new produit($name,$descriptionP,$stock,$price);
         $produitC = new produitC();
-        $produitC->ajouterproduit($produit);
+        $produitC->modifierproduit($produit,$idP);
        // var_dump($id_produit) ;
 
         ob_end_flush();

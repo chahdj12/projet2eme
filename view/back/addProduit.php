@@ -60,8 +60,8 @@ include "../../controller/produitC.php";
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <input class="form-control" id="inputDescription" type="text"  name="desc" placeholder="Enter Product  Description" />
-                                                        <label for="inputDescription">Description</label>
+                                                        <input class="form-control" id="inputdescription" type="text"  name="desc" placeholder="Enter Product  Description" require=true />
+                                                        <label for="inputdescription">Description</label>
                                                     </div>
                                                 </div>
                                             </div>
