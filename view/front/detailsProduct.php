@@ -128,7 +128,7 @@ http://www.templatemo.com/tm-475-holiday
 				<?php    foreach ($list as $row)  { ?>
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 						<div class="tm-about-box-1">
-							<a href="#"><img src="img/about-4.jpg" alt="img" class="tm-about-box-1-img"></a>
+							<a href="#"><img src="http://localhost/projetWeb2eme/view/back/uploads/<?php echo $row['logo']; ?>" width="150" height="150" alt="img" class="tm-about-box-1-img"></a>
 							<h3 class="tm-about-box-1-title"><?php    echo $row['nameS'] ?></h3>
 							<p class="margin-bottom-15 gray-text"><?php    echo $row['descriptionS'] ?></p>
 							<div class="gray-text">

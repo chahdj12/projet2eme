@@ -27,6 +27,7 @@ class produitC{
         try{
             $pdo = config::getConnexion();
             $query=$pdo->prepare("SELECT * FROM produit WHERE id_produit= :id");
+            // Liaison du paramètre ':id' à la valeur fournie
             $query->bindParam(':id', $id);
         $query->execute();
 

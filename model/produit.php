@@ -6,6 +6,7 @@ class produit
     private ?string $descriptionP = null;
     private ?int $stock = null;
     private ?int $prix = null;
+    //une nouvelle instance de la classe.
 
     public function __construct( $n, $desc, $stock, $prix)
     {
