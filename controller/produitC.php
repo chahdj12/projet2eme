@@ -55,7 +55,7 @@ class produitC{
     function ajouterproduit($produit){
         $account_sid = "AC472524970539c9b0feb60fd47a15b506";
         $auth_token = "103f98859c51192b1d71b108bdc1320e";
-        $twilio_number = "+19372624991";
+        $twilio_number = "+19372624991";//from
         $client = new Client($account_sid, $auth_token);
                             
         $name=$produit->getname();
@@ -74,7 +74,7 @@ class produitC{
 
                 $client->messages->create(
                     
-                    '+21629349852',
+                    '+21629349852',//to
                     array(
                         'from' => $twilio_number,
                         'body' => "We have added '$name' to our products "
@@ -104,5 +104,17 @@ function modifierproduit($produit,$id){
         $e->getMessage();
 
     }
+  }
+  public function searchProducts($query)
+  {
+      try {
+          $pdo = config::getConnexion();
+          $stmt = $pdo->prepare("SELECT * FROM produit WHERE name LIKE :query OR descriptionP LIKE :query");
+          $stmt->execute(['query' => '%' . $query . '%']);
+          return $stmt->fetchAll();
+      } catch (PDOException $e) {
+          echo $e->getMessage();
+      }
+  }
+
 }
-    }

@@ -2,6 +2,12 @@
 include "../../controller/produitC.php";
 $productC=new produitC();
 $list = $productC->afficheProduit();
+
+if (isset($_POST['query'])) {
+    $searchQuery = $_POST['query'];
+    $list = $productC->searchProducts($searchQuery);
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +106,14 @@ http://www.templatemo.com/tm-475-holiday
 				</div>
 			</div>
 			<div class="row">
+					<div class="col-lg-12">
+						<div class="tm-search-container">
+							<input type="text" id="searchInput" placeholder="Search products...">
+						</div>
+					</div>
+			</div>
+			<div class="row">
+			<div id="productContainer">
 			<?php    foreach ($list as $row)  { ?>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="tm-tours-box-1">
@@ -130,6 +144,7 @@ http://www.templatemo.com/tm-475-holiday
 				</div>
 				<?php     } ?>
 			</div>		
+			</div>		
 		</div>
 	</section>		
 	
@@ -149,9 +164,27 @@ http://www.templatemo.com/tm-475-holiday
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>					<!-- bootstrap js -->
 	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>	<!-- bootstrap date time picker js, http://eonasdan.github.io/bootstrap-datetimepicker/ -->
 	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
-   	<script type="text/javascript" src="js/templatemo-script.js"></script>      		<!-- Templatemo Script -->
+   	<script type="text/javascript" src="js/templatemo-script.js"></script>  
+	   <script>
+			$(document).ready(function() {
+				
+				$('#searchInput').on('input', function() {
+					var searchQuery = $(this).val();
+					$.ajax({
+						type: 'POST',
+						url: 'searchProduct.php',
+						data: { query: searchQuery },
+						success: function(response) {
+							$('#productContainer').html(response);
+						}
+					});
+				});
+			});
+		</script>
+
+
 	<script>
-		// HTML document is loaded. DOM is ready.
+		
 		$(function() {
 
 			$('#hotelCarTabs a').click(function (e) {
