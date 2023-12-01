@@ -117,4 +117,17 @@ function modifierproduit($produit,$id){
       }
   }
 
+  public function sortProductsByPrice($order)
+    {
+        try {
+            $pdo = config::getConnexion();
+            $stmt = $pdo->prepare("SELECT * FROM produit ORDER BY prix $order");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
 }

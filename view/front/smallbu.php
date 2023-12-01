@@ -113,6 +113,19 @@ http://www.templatemo.com/tm-475-holiday
 					</div>
 			</div>
 			<div class="row">
+				<div class="col-lg-12">
+					<div class="tm-sort-container">
+						<label for="sortOrder">Sort by:</label>
+						<select id="sortOrder" onchange="sortProducts()">
+							<option >--------Price--------</option>
+							<option value="asc">Price Ascending</option>
+							<option value="desc">Price Descending</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
 			<div id="productContainer">
 			<?php    foreach ($list as $row)  { ?>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -180,6 +193,19 @@ http://www.templatemo.com/tm-475-holiday
 					});
 				});
 			});
+
+			function sortProducts() {
+				var sortOrder = $('#sortOrder').val();
+				$.ajax({
+					type: 'POST',
+					url: 'sortProductByPrice.php',
+					data: { order: sortOrder },
+					success: function(response) {
+						
+						$('#productContainer').html(response);
+					}
+				});
+			}
 		</script>
 
 
