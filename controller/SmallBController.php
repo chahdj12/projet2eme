@@ -2,8 +2,10 @@
     require_once "config.php";
     require_once "./../../model/SmallBuisness.php";
 
+
     class SmallBController {
         // SmallBController.php
+        
 
 
 

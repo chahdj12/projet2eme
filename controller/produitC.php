@@ -2,7 +2,10 @@
     require_once "config.php";
     require_once "./../../model/produit.php";
     require_once "./../../model/SmallBuisness.php";
+    require_once "./../../vendor/autoload.php";
+    use Twilio\Rest\Client;
 
+    
 class produitC{
     public function afficherSmallb($id_produit){
         try{
@@ -50,7 +53,10 @@ class produitC{
         }
     }
     function ajouterproduit($produit){
-
+        $account_sid = "AC472524970539c9b0feb60fd47a15b506";
+        $auth_token = "103f98859c51192b1d71b108bdc1320e";
+        $twilio_number = "+19372624991";
+        $client = new Client($account_sid, $auth_token);
                             
         $name=$produit->getname();
       
@@ -65,6 +71,15 @@ class produitC{
             $db = config::getConnexion();
                 $query = $db->prepare($sql);
                 $query->execute();
+
+                $client->messages->create(
+                    
+                    '+21629349852',
+                    array(
+                        'from' => $twilio_number,
+                        'body' => "We have added '$name' to our products "
+                    )
+                );
             } catch(Exception $e){
                 $e->getMessage();
             }
