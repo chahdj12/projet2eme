@@ -6,6 +6,22 @@ include "../../controller/produitC.php";
     $smallBController = new SmallBController();
     $list = $smallBController->afficherSmallB();
     $productC=new produitC();
+
+    // $pdfData = [];
+    // foreach ($list as $row) {
+    //     $pdfData[] = [
+    //         $row['logo'],
+    //         $row['nameS'],
+    //         $row['categorie'],
+    //         $row['lieu'],
+    //         $row['descriptionS'],
+    //         $productC->getProcuctByiD($row['produit'])['name']
+    //     ];
+    // }
+    // if(isset($_POST['pdf'])){
+
+    //     $smallBController->generatePDF($pdfData);
+    // }
 ?>
     <body class="sb-nav-fixed">
       
@@ -22,11 +38,12 @@ include "../../controller/produitC.php";
        
                         <div class="card mb-4">
                         <div class="card-header">
-                                <!-- <button type="button" class="btn btn-primary m-1 float-right"><a href="register.php"></a><i class="fas fa-user-plus fa-lg"></i>&nbsp;&nbsp; Add New User</button> -->
                                 <button class="btn btn-primary m-1 float-right"><a href="./addSmallB.php"
                                     class="text-light">New Small Buisness</a>
                                 </button><br>
-                              
+                                <button class="btn btn-primary m-1 float-right"><a href="./genPDF.php"
+                        class="text-light"><i class="fas fa-print fa-lg"></i>&nbsp;&nbsp;</i></a>
+                    </button>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -52,8 +69,7 @@ include "../../controller/produitC.php";
                                             <td><?php    echo $row['lieu'] ?></td>
                                             <td><?php    echo $row['descriptionS'] ?></td>
                                             <td><?php    echo $productC->getProcuctByiD($row['produit'])['name'] ?></td>
-                                            <td>                                            <img src="http://localhost/projetWeb2eme/view/back/uploads/<?php echo $row['logo']; ?>" alt="logo" width="100" height="100" > 
-</td>
+                                            <td> <img src="http://localhost/projetWeb2eme/view/back/uploads/<?php echo $row['logo']; ?>" alt="logo" width="100" height="100" > </td>
                                             <td>
                                                 <?php echo'
                                               <button class="btn btn-primary">
@@ -94,5 +110,31 @@ include "../../controller/produitC.php";
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="./../../vendor/TCPDF/tcpdf.php"></script>
+        <script>
+             
+
+            function generatePDF() {
+               
+                var table = document.getElementById('datatablesSimple');
+                var data = [];
+                for (var i = 1; i < table.rows.length; i++) {
+                    var rowData = [];
+                    for (var j = 0; j < table.rows[i].cells.length - 1; j++) {
+                        rowData.push(table.rows[i].cells[j].innerHTML);
+                    }
+                    data.push(rowData);
+                }
+
+                var pdf = new jsPDF();
+                pdf.autoTable({
+                    head: [['Name', 'Categorie', 'Location', 'Description', 'Product']],
+                    body: data,
+                });
+
+                pdf.save('small_business_list.pdf');
+            }
+        </script>
+
     </body>
 </html>

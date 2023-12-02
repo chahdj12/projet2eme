@@ -108,10 +108,49 @@
                 return $data;
      
             }
+            function generatePDF($data) {
+                $pdf = new TCPDF();
+            
+                // Set document information
+                $pdf->SetCreator(PDF_CREATOR);
+                $pdf->SetAuthor('Your Name');
+                $pdf->SetTitle('Small Business List');
+                $pdf->SetSubject('Small Business List PDF');
+                $pdf->SetKeywords('TCPDF, PDF, small business, list');
+        
+                $pdf->AddPage();
+        
+                $pdf->SetFont('helvetica', '', 12);
+            
+        
+                $html = '<h1>Small Business List</h1>';
+                $html .= '<table border="1">';
+                $html .= '<tr><th>Logo</th><th>Name</th><th>Categorie</th><th>Location</th><th>Description</th><th>Product</th></tr>';
+                
+                foreach ($data as $row) {
+                    $html .= '<tr>';
+                    
+                    $logoPath = 'path/to/logos/' . $row[0] . '_logo.png';  
+                    $html .= '<td><img src="' . $logoPath . '" width="50" height="50"></td>';
+        
+                    for ($i = 1; $i < count($row); $i++) {
+                        $html .= '<td>' . $row[$i] . '</td>';
+                    }
+                    
+                    $html .= '</tr>';
+                }
+            
+                $html .= '</table>';
+        
+                $pdf->writeHTML($html, true, false, true, false, '');
+        
+                $pdf->Output('small_business_list.pdf', 'D');
+            }
     }
 
 
- 
+    
+    
 
 
 ?>
