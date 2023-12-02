@@ -14,12 +14,10 @@ $options = new Options();
 $options->set('isHtml5ParserEnabled', true);
 $options->set('isPhpEnabled', true);
 $dompdf = new Dompdf($options);
-$dompdf=new Dompdf();
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4','Paysage');
 $dompdf->render();
-$dompdf->stream();
 $dompdf->stream('output.pdf', array('Attachment' => false));
 
 

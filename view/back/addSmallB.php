@@ -69,11 +69,11 @@ include "../../controller/produitC.php";
             $err= "Please select a file to upload.";
         }
        
-       // var_dump($id_produit) ;
+       
 
-        ob_end_flush();
-        // header("Location: listSmallBuisness.php");
-        exit();        
+       ob_start();
+         header("Location: listSmallBuisness.php");
+       ob_end_clean();        
     }
 		
 ?>

@@ -26,8 +26,9 @@ include "../../controller/produitC.php";
         $produitC->ajouterproduit($produit);
        // var_dump($id_produit) ;
 
-        ob_end_flush();
+        ob_start();
         header("Location: listProduit.php");
+        ob_end_clean();
         exit();        
     }
 		
