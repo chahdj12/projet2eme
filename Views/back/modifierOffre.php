@@ -95,7 +95,7 @@ if (
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Offres
                         </a>
-                        <a class="nav-link" href="typelivraisons.php">
+                        <a class="nav-link" href="typeoffres.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             types de Offres
                         </a>

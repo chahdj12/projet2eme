@@ -39,7 +39,7 @@ http://www.templatemo.com/tm-475-holiday
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                    <a href="#" class="tm-site-name">TunisiaTales</a>
+                    <a href="#" class="tm-site-name">Holiday</a>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-9">
                     <div class="mobile-menu-icon">
@@ -50,7 +50,7 @@ http://www.templatemo.com/tm-475-holiday
                             <li><a href="index.html">Home</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="offres.php" class="active">offres</a></li>
-                            <li><a href="favoris.php">Favoris</a></li>
+                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav>
                 </div>

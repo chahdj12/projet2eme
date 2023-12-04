@@ -103,9 +103,9 @@ if (isset($_POST["nom"], $_POST["description"])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Types de Livraison</h1>
+                    <h1 class="mt-4">Types de Offres</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Nouveau type de livraison</li>
+                        <li class="breadcrumb-item active">Nouveau type de offres</li>
                     </ol>
 
                     <div class="container mt-5">

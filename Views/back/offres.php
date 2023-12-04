@@ -1,5 +1,5 @@
 <?php
-require_once("../../Controller/OffreC.php"); // Assuming the path to your OffreC class
+require_once("../../Controller/OffreC.php"); 
 
 $offreC = new OffreC();
 $offres = $offreC->afficherOffres();
@@ -130,6 +130,7 @@ $offres = $offreC->afficherOffres();
             <th>Date de fin</th>
             <th>Localisation</th>
             <th>Type</th>
+            <th>Likes</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -143,6 +144,7 @@ $offres = $offreC->afficherOffres();
             <th>Date de fin</th>
             <th>Localisation</th>
             <th>Type</th>
+            <th>Likes</th>
             <th>Actions</th>
         </tr>
     </tfoot>
@@ -157,6 +159,7 @@ $offres = $offreC->afficherOffres();
                 <td><?= $offre['date_fin'] ?></td>
                 <td><?= $offre['localisation'] ?></td>
                 <td><?= $offre['type_nom'] ?></td>
+                <td><?= $offreC->getLikeCount($offre['id']) ?></td>
                 <td>
                     <a href="modifierOffre.php?id=<?= $offre['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
                     <a href="supprimerOffre.php?id=<?= $offre['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette offre ?')">Supprimer</a>
