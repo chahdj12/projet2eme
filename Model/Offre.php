@@ -10,7 +10,7 @@ class Offre {
     private $localisation;
     private $type;
 
-    // Constructor
+    
     public function __construct($id, $nom, $description, $prix, $date_debut, $date_fin, $localisation, $type) {
         $this->id = $id;
         $this->nom = $nom;
@@ -22,7 +22,7 @@ class Offre {
         $this->type = $type;
     }
 
-    // Getters
+    
     public function getId() {
         return $this->id;
     }
@@ -55,7 +55,7 @@ class Offre {
         return $this->type;
     }
 
-    // Setters
+    
     public function setId($id) {
         $this->id = $id;
     }

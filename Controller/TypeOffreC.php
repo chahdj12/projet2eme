@@ -1,7 +1,7 @@
 <?php
 
 include "../../config.php";
-require_once '../../Model/TypeOffre.php'; // Assuming the path to your TypeOffre class
+require_once '../../Model/TypeOffre.php'; 
 
 class TypeOffreC {
 

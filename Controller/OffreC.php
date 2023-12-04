@@ -39,10 +39,29 @@ class OffreC {
 
 
     function afficherOffres() {
-        $sql = "SELECT offre.*, typeOffre.nom as type_nom , typeOffre.logo as logo
+        $sql = "SELECT offre.*, typeOffre.nom as type_nom, typeOffre.logo as logo
                 FROM offre
                 LEFT JOIN typeOffre ON offre.type_id = typeOffre.id";
     
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
+
+    public function afficherOffresRecherche($search = "")
+    {
+        $sql = "SELECT offre.*, typeOffre.nom as type_nom, typeOffre.logo as logo
+                FROM offre
+                LEFT JOIN typeOffre ON offre.type_id = typeOffre.id";
+        
+        if (!empty($search)) {
+            $sql .= " WHERE offre.nom LIKE '%$search%'";
+        }
+
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -106,6 +125,66 @@ class OffreC {
         } catch (Exception $e) {
             echo 'Erreur: ' . $e->getMessage();
         }
+    }
+
+    public function likeOffre($idUser, $idOffre)
+    {
+        $db = config::getConnexion();
+        $sql = "INSERT INTO likes (idUser, idOffre) VALUES (:idUser, :idOffre)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function dislikeOffre($idUser, $idOffre)
+    {
+        $db = config::getConnexion();
+        $sql = "DELETE FROM likes WHERE idUser = :idUser AND idOffre = :idOffre";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function isLiked($idUser, $idOffre)
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT COUNT(*) FROM likes WHERE idUser = :idUser AND idOffre = :idOffre";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn() > 0;
+    }
+    public function afficherLikedOffres($idUser)
+{
+    $db = config::getConnexion();
+    $sql = "SELECT offre.*, typeOffre.nom as type_nom, typeOffre.logo as logo
+            FROM offre
+            INNER JOIN likes ON offre.id = likes.idOffre
+            LEFT JOIN typeOffre ON offre.type_id = typeOffre.id
+            WHERE likes.idUser = :idUser";
+
+    try {
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        die('Erreur: ' . $e->getMessage());
+    }
+}
+
+
+    public function getLikeCount($offreId)
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT COUNT(*) FROM likes WHERE idOffre = :idOffre";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':idOffre', $offreId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn();
     }
 }
 ?>

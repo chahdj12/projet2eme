@@ -6,7 +6,7 @@ class TypeOffre {
     private $description;
     private $logo;
 
-    // Constructor
+
     public function __construct($id, $nom, $description, $logo) {
         $this->id = $id;
         $this->nom = $nom;
@@ -14,7 +14,7 @@ class TypeOffre {
         $this->logo = $logo;
     }
 
-    // Getters
+    
     public function getId() {
         return $this->id;
     }
@@ -31,7 +31,7 @@ class TypeOffre {
         return $this->logo;
     }
 
-    // Setters
+    
     public function setId($id) {
         $this->id = $id;
     }
