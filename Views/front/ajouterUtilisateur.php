@@ -50,12 +50,12 @@
                 echo '<script> alert("Votre compte a été crée avec succès. Vérifiez vos mails pour l\'activer");</script>';
                 sleep(5);
 
-                header('Location: sign-in.php');
+              //  header('Location: sign-in.php');
             }
                 
             else
                 $error = "Missing information";
-                header('Location: sign-in.php');
+              //  header('Location: sign-in.php');
         }
     
         

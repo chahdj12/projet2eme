@@ -12,9 +12,15 @@ if (isset($_SESSION["username"]))
 }
 
 $utilisateurC = new UtilisateurC();
+
+
+
 if (isset($_GET['id'])){
     $utilisateur = $utilisateurC->getUtilisateurById($_GET['id']);
 }
+
+
+
 if (
     isset($_POST["nom_user"]) &&
     isset($_POST["prenom_user"]) &&
@@ -112,38 +118,13 @@ if (
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
-                </ul>
+                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                                </ul>
             </li>
         </ul>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Admin Dashboard</div>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <a class="nav-link" href="livraisons.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Livraison
-                        </a>
-                        <a class="nav-link" href="typelivraisons.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            types de Livraison
-                        </a>
-
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
-                </div>
-            </nav>
-        </div>
+    <?php require_once('navbar.php'); ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">

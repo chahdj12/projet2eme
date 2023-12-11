@@ -52,7 +52,7 @@ if (
             $username,
             $password_user,
             $role_user
-        );
+        );/////////////
 
         $utilisateurC->ajouter_Utilisateur($utilisateur);
         header('Location: utilisateurs.php');
@@ -112,31 +112,13 @@ if (
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
-                </ul>
+                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                                </ul>
             </li>
         </ul>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Admin Dashboard</div>
-                        <a class="nav-link" href="Utilisateurs.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        
-
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
-                </div>
-            </nav>
-        </div>
+    <?php require_once('navbar.php'); ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">

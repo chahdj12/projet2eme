@@ -7,11 +7,18 @@ session_start();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Add these lines to include Bootstrap CSS and JS files -->
+
   <title>Holiday</title>
 <!--
 Holiday Template
 http://www.templatemo.com/tm-475-holiday
 -->
+<!-- Add these lines to include Bootstrap CSS and JS files -->
+<!-- Add these links in your HTML head section -->
+<!-- Add these links in your HTML head section -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -28,54 +35,9 @@ http://www.templatemo.com/tm-475-holiday
 
   </head>
   <body class="tm-gray-bg">
-  <?php
-        if (isset($_SESSION['username'])) {
-         if (!$_SESSION['verified']) { ?>
-         <script>
-			 alert('compte non verifié')
-			 </script>
-        <?php
-        }
-       
-        }
-         ?>
-		 <?php
-        if(isset($_SESSION['message'])){
-        ?>
-        <script>alert('compte verifié');</script>
-        <?php
-        unset($_SESSION['message']);
-        } ?>
-  	<!-- Header -->
-  	<div class="tm-header">
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-  					<a href="#" class="tm-site-name">Holiday</a>	
-  				</div>
-	  			<div class="col-lg-6 col-md-8 col-sm-9">
-	  				<div class="mobile-menu-icon">
-		              <i class="fa fa-bars"></i>
-		            </div>
-	  				<nav class="tm-nav">
-						<ul>
-							<li><a href="index.php" class="active">Home</a></li>
-							<?php
-								if (isset($_SESSION['username'])) {
-								?>
-								<li></i> <a href="profile.php">hello <?php echo $_SESSION['nom_prenom_user'] ?></a></li>
-								<li><a href="logout.php">logout</a></li>
-								<?php } else { ?>
-								<li><a href="sign-in.php">sign in</a></li>
-								<li><a href="sign-up.php">sign up</a></li>
 
-									<?php } ?>
-						</ul>
-					</nav>		
-	  			</div>				
-  			</div>
-  		</div>	  	
-  	</div>
+  	<!-- Header -->
+	<?php require_once('header.php'); ?>
 	
 	<!-- Banner -->
 	<section class="tm-banner">

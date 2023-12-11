@@ -25,7 +25,7 @@ $mail->addAddress($email_user);     // Add a recipient
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);   
 
-$link='localhost/gestionuser/Views/front/verifierUtilisateur.php?email='.$email_user;
+$link='localhost/mouhanned/Views/front/verifierUtilisateur.php?email='.$email_user;
 
 $mail->Subject = 'reset password';
 $mail->Body = 'Bonjour ' .$nom_user.' '.$prenom_user .',
